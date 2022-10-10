@@ -61,6 +61,20 @@ module.exports = {
     // packages
     // build output is always in dist/packages
     '@nativescript': {
+      // @nativescript/plugin-simple-tcp-socket
+      'plugin-simple-tcp-socket': {
+        build: {
+          script: 'nx run plugin-simple-tcp-socket:build.all',
+          description: '@nativescript/plugin-simple-tcp-socket: Build',
+        },
+      },
+      // @nativescript/simple-tcp-socket
+      'simple-tcp-socket': {
+        build: {
+          script: 'nx run simple-tcp-socket:build.all',
+          description: '@nativescript/simple-tcp-socket: Build',
+        },
+      },
       'build-all': {
         script: 'nx run-many --target=build.all --all',
         description: 'Build all packages',
@@ -71,6 +85,14 @@ module.exports = {
       description: '_____________  Focus (VS Code supported)  _____________',
     },
     focus: {
+      'plugin-simple-tcp-socket': {
+        script: 'nx run plugin-simple-tcp-socket:focus',
+        description: 'Focus on @nativescript/plugin-simple-tcp-socket',
+      },
+      'simple-tcp-socket': {
+        script: 'nx run simple-tcp-socket:focus',
+        description: 'Focus on @nativescript/simple-tcp-socket',
+      },
       reset: {
         script: 'nx g @nativescript/plugin-tools:focus-packages',
         description: 'Reset Focus',

@@ -1,0 +1,64 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/simple-tcp-socket",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "options": {
+        "outputPath": "dist/packages/simple-tcp-socket",
+        "tsConfig": "packages/simple-tcp-socket/tsconfig.json",
+        "packageJson": "packages/simple-tcp-socket/package.json",
+        "main": "packages/simple-tcp-socket/index.d.ts",
+        "assets": [
+          "packages/simple-tcp-socket/*.md",
+          "packages/simple-tcp-socket/index.d.ts",
+          "LICENSE",
+          {
+            "glob": "**/*",
+            "input": "packages/simple-tcp-socket/platforms/",
+            "output": "./platforms/"
+          }
+        ],
+        "dependsOn": [
+          {
+            "target": "build.all",
+            "projects": "dependencies"
+          }
+        ]
+      }
+    },
+    "build.all": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["node tools/scripts/build-finish.ts simple-tcp-socket"],
+        "parallel": false
+      },
+      "outputs": ["dist/packages/simple-tcp-socket"],
+      "dependsOn": [
+        {
+          "target": "build.all",
+          "projects": "dependencies"
+        },
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ]
+    },
+    "focus": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["nx g @nativescript/plugin-tools:focus-packages simple-tcp-socket"],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/simple-tcp-socket/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

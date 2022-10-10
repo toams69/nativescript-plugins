@@ -20,7 +20,10 @@
       }
     ],
     "paths": {
-      "@demo/shared": ["tools/demo/index.ts"]
+      "@demo/shared": ["tools/demo/index.ts"],
+      "@nativescript/*": ["packages/*"],
+      "@nativescript/plugin-simple-tcp-socket": ["packages/plugin-simple-tcp-socket/index.d.ts"],
+      "@nativescript/simple-tcp-socket": ["packages/simple-tcp-socket/index.d.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

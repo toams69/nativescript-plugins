@@ -44,5 +44,13 @@ public class NSCTCPClient: NSObject {
 
     public func connect(servername: String, port: UInt16 ) {
         client = Client(host: servername, port: port);
+        client.start();
+    }
+
+    public func send(data: String) {
+        if (client != nil) {
+            guard let decoded = Data(base64Encoded: data) else { return }            
+            client.send(data: decoded);
+        }
     }
 }

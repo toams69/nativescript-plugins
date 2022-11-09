@@ -7,4 +7,6 @@ declare class NSCTCPClient extends NSObject {
   static new(): NSCTCPClient; // inherited from NSObject
 
   connectWithServernamePort(servername: string, port: number): void;
+
+  sendWithData(data: string): void;
 }
